@@ -1,7 +1,7 @@
 #include "Matrix.h"
 #include <assert.h>
 
-//1.s—ñ‚Ì‰Á–@
+//1.è¡Œåˆ—ã®åŠ æ³•
 Vector3 Add(const Vector3& v1, const Vector3& v2) {
 	Vector3 Add;
 	Add.x = v1.x + v2.x;
@@ -10,7 +10,7 @@ Vector3 Add(const Vector3& v1, const Vector3& v2) {
 	return Add;
 }
 
-//2.Œ¸–@
+//2.æ¸›æ³•
 Vector3 Subtract(const Vector3& v1, const Vector3& v2) {
 	Vector3 Subtract;
 	Subtract.x = v1.x - v2.x;
@@ -19,7 +19,7 @@ Vector3 Subtract(const Vector3& v1, const Vector3& v2) {
 	return Subtract;
 }
 
-//Ï
+//ç©
 Vector3 Multiply(const Vector3& v1, const Vector3& v2) {
 	Vector3 Multiply;
 	Multiply.x = v1.x * v2.x;
@@ -28,7 +28,7 @@ Vector3 Multiply(const Vector3& v1, const Vector3& v2) {
 	return Multiply;
 }
 
-//‰ÁZ
+//åŠ ç®—
 Matrix4x4 Add(Matrix4x4 matrix1, Matrix4x4 matrix2) {
 	Matrix4x4 Add;
 	Add.m[0][0] = matrix1.m[0][0] + matrix2.m[0][0];
@@ -50,7 +50,7 @@ Matrix4x4 Add(Matrix4x4 matrix1, Matrix4x4 matrix2) {
 	return Add;
 }
 
-//Œ¸Z
+//æ¸›ç®—
 Matrix4x4 Subtract(Matrix4x4 matrix1, Matrix4x4 matrix2) {
 	Matrix4x4 Subtract;
 	Subtract.m[0][0] = matrix1.m[0][0] - matrix2.m[0][0];
@@ -73,7 +73,7 @@ Matrix4x4 Subtract(Matrix4x4 matrix1, Matrix4x4 matrix2) {
 	return Subtract;
 }
 
-// ‚QŸŒ³ƒxƒNƒgƒ‹‚ğ“¯ŸÀ•W‚É•ÏŠ·
+// ï¼’æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«ã‚’åŒæ¬¡åº§æ¨™ã«å¤‰æ›
 Vector3 Transform(Vector3 vector, Matrix4x4 matrix) {
 	Vector3 result;
 	result.x = vector.x * matrix.m[0][0] + vector.y * matrix.m[1][0] + vector.z * matrix.m[2][0] +
@@ -91,8 +91,8 @@ Vector3 Transform(Vector3 vector, Matrix4x4 matrix) {
 	return result;
 }
 
-// •½sˆÚ“®s—ñ
-Matrix4x4 MakeTranslateMatrix(Vector3 translate) { // translate‚É“ü‚é’l‚ÍˆÚ“®—Ê
+// å¹³è¡Œç§»å‹•è¡Œåˆ—
+Matrix4x4 MakeTranslateMatrix(Vector3 translate) { // translateã«å…¥ã‚‹å€¤ã¯ç§»å‹•é‡
 	Matrix4x4 mul;
 	mul.m[0][0] = 1;
 	mul.m[0][1] = 0;
@@ -114,7 +114,7 @@ Matrix4x4 MakeTranslateMatrix(Vector3 translate) { // translate‚É“ü‚é’l‚ÍˆÚ“®—Ê
 	return mul;
 }
 
-// Šg‘åk¬s—ñ
+// æ‹¡å¤§ç¸®å°è¡Œåˆ—
 Matrix4x4 MakeScaleMatrix(Vector3 scale) {
 	Matrix4x4 mul;
 	mul.m[0][0] = scale.x;
@@ -137,7 +137,7 @@ Matrix4x4 MakeScaleMatrix(Vector3 scale) {
 	return mul;
 }
 
-// ‰ñ“]s—ñ
+// å›è»¢è¡Œåˆ—
 // Z
 Matrix4x4 MakeRotateZMatrix(float radian) {
 	Matrix4x4 rotate;
@@ -208,7 +208,7 @@ Matrix4x4 MakeRotateYMatrix(float radian) {
 	return rotate;
 }
 
-// Ï
+// ç©
 Matrix4x4 Multiply(Matrix4x4 matrix1, Matrix4x4 matrix2) {
 	Matrix4x4 Multiply;
 	Multiply.m[0][0] = (matrix1.m[0][0] * matrix2.m[0][0]) + (matrix1.m[0][1] * matrix2.m[1][0]) +
@@ -250,7 +250,7 @@ Matrix4x4 Multiply(Matrix4x4 matrix1, Matrix4x4 matrix2) {
 	return Multiply;
 }
 
-//‹ts—ñ4x4
+//é€†è¡Œåˆ—4x4
 
 Matrix4x4 Inverse(Matrix4x4 matrix) {
 	Matrix4x4 Inverse;
@@ -396,7 +396,7 @@ Matrix4x4 MakePerspectiveFovMatrix(float fovY, float aspectRatio, float nearClip
 	return Pers;
 }
 
-//³‹K‰»
+//æ­£è¦åŒ–
 Vector3 Normalize(const Vector3& pos) {
 	Vector3 newPos;
 	float length = sqrt((pos.x * pos.x) + (pos.y * pos.y) + (pos.z * pos.z));
@@ -408,7 +408,7 @@ Vector3 Normalize(const Vector3& pos) {
 	return newPos;
 }
 
-//ƒXƒJƒ‰[”{
+//ã‚¹ã‚«ãƒ©ãƒ¼å€
 Vector3 Scaler(float scalar, const Vector3& v2) {
 	Vector3 Multiply;
 	Multiply.x = scalar * v2.x;

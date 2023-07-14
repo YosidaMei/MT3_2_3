@@ -45,3 +45,4 @@ bool IsCollisionS2P(const Sphere& sphere, Plane& plane);
 void DrawPlane(const Plane& plane, const Matrix4x4& viewProjectionMatrix, const Matrix4x4& viewportMatrix, uint32_t color);
 Vector3 Perpendicular(const Vector3& vector);
 Vector3 Cross(const Vector3& v1, const Vector3& v2);
+bool IsCollisionS2P(const Segment& segment, Plane& plane);

@@ -1,19 +1,19 @@
 #include "Function.h"
 
 void DrawGrid(const Matrix4x4& viewProjectionMatrix, const Matrix4x4& viewportMatrix) {
-	const float kGridHalfWidth = 2.0f;//ƒOƒŠƒbƒh‚Ì”¼•ª‚Ì•
-	const uint32_t kSubivision = 10;//•ªŠ„”
+	const float kGridHalfWidth = 2.0f;//ã‚°ãƒªãƒƒãƒ‰ã®åŠåˆ†ã®å¹…
+	const uint32_t kSubivision = 10;//åˆ†å‰²æ•°
 	const float kGridEvery = (kGridHalfWidth * 2.0f) / float(kSubivision);
-	//¶‚©‚ç‰E‚Éü‚ğˆø‚­
+	//å·¦ã‹ã‚‰å³ã«ç·šã‚’å¼•ã
 	for (uint32_t zIndex = 0; zIndex <= kSubivision; ++zIndex) {
 		Vector3 startPos = { kGridHalfWidth,0, kGridEvery * zIndex - kGridHalfWidth };
 		Vector3 endPos = { -kGridHalfWidth,0, kGridEvery * zIndex - kGridHalfWidth };
-		//ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 		Vector3 startNdcVertex = Transform(startPos, viewProjectionMatrix);
 		startPos = Transform(startNdcVertex, viewportMatrix);
 		Vector3 endNdcVertex = Transform(endPos, viewProjectionMatrix);
 		endPos = Transform(endNdcVertex, viewportMatrix);
-		//•`‰æ
+		//æç”»
 		if (kGridEvery * zIndex - kGridHalfWidth != 0) {
 			Novice::DrawLine(
 				int(startPos.x), int(startPos.y),
@@ -26,16 +26,16 @@ void DrawGrid(const Matrix4x4& viewProjectionMatrix, const Matrix4x4& viewportMa
 		}
 
 	}
-	//‰œ‚©‚çè‘O‚Éü‚ğˆø‚­
+	//å¥¥ã‹ã‚‰æ‰‹å‰ã«ç·šã‚’å¼•ã
 	for (uint32_t xIndex = 0; xIndex <= kSubivision; ++xIndex) {
 		Vector3 startPos = { kGridEvery * xIndex - kGridHalfWidth ,0,kGridHalfWidth };
 		Vector3 endPos = { kGridEvery * xIndex - kGridHalfWidth,0,-kGridHalfWidth };
-		//ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 		Vector3 startNdcVertex = Transform(startPos, viewProjectionMatrix);
 		startPos = Transform(startNdcVertex, viewportMatrix);
 		Vector3 endNdcVertex = Transform(endPos, viewProjectionMatrix);
 		endPos = Transform(endNdcVertex, viewportMatrix);
-		//•`‰æ
+		//æç”»
 		if (kGridEvery * xIndex - kGridHalfWidth != 0) {
 			Novice::DrawLine(
 				int(startPos.x), int(startPos.y),
@@ -64,14 +64,14 @@ void DrawSphere(const Sphere& sphere, const Matrix4x4& viewProjectionMatrix, con
 			b = Add(b, sphere.center);
 			c = { sphere.radius * std::cos(lat) * std::cos(lon + kLonEvery),sphere.radius * std::sin(lat),sphere.radius * std::cos(lat) * std::sin(lon + kLonEvery) };
 			c = Add(c, sphere.center);
-			//ƒXƒNƒŠ[ƒ“À•W•ÏŠ·
+			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™å¤‰æ›
 			a = Transform(a, viewProjectionMatrix);
 			a = Transform(a, viewportMatrix);
 			b = Transform(b, viewProjectionMatrix);
 			b = Transform(b, viewportMatrix);
 			c = Transform(c, viewProjectionMatrix);
 			c = Transform(c, viewportMatrix);
-			//•`‰æ
+			//æç”»
 			Novice::DrawLine((int)a.x, (int)a.y, (int)b.x, (int)b.y, color);
 			Novice::DrawLine((int)a.x, (int)a.y, (int)c.x, (int)c.y, color);
 		}
@@ -99,11 +99,11 @@ float Lengh(const Vector3& v) {
 	return length;
 }
 
-//‹…‚ÌÕ“Ë”»’è
+//çƒã®è¡çªåˆ¤å®š
 bool IsCollisionS2S(const Sphere& s1, const Sphere& s2) {
-	//“ñ‚Â‚Ì‹…‚Ì’†SŠÔ‚Ì‹——£‚ğ‹‚ß‚é
+	//äºŒã¤ã®çƒã®ä¸­å¿ƒé–“ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
 	float distance = Lengh(Subtract(s1.center, s2.center));
-	//”¼Œa‚Ì‡Œv‚æ‚è‚à’Z‚¯‚ê‚ÎÕ“Ë
+	//åŠå¾„ã®åˆè¨ˆã‚ˆã‚Šã‚‚çŸ­ã‘ã‚Œã°è¡çª
 	if (distance <= s1.radius + s2.radius) {
 		return true;
 	}
@@ -113,14 +113,14 @@ bool IsCollisionS2S(const Sphere& s1, const Sphere& s2) {
 	}
 
 }
-//“àÏ
+//å†…ç©
 float InnerProduct(const Vector3& v1, const Vector3& v2) {
 	float product;
 	product = (v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z);
 	return product;
 }
 
-//ƒNƒƒXÏ
+//ã‚¯ãƒ­ã‚¹ç©
 Vector3 Cross(const Vector3& v1, const Vector3& v2) {
 	Vector3 cross;
 	cross.x = (v1.y * v2.z - v1.z * v2.y);
@@ -129,21 +129,41 @@ Vector3 Cross(const Vector3& v1, const Vector3& v2) {
 	return cross;
 }
 
-//‹…‚Æ•½–Ê‚ÌÕ“Ë”»’è
+//çƒã¨å¹³é¢ã®è¡çªåˆ¤å®š
 bool IsCollisionS2P(const Sphere& sphere, Plane& plane) {
 	float length, d;
 	Vector3 n;
 	n = Normalize(plane.normal);
-	//‹…‚Ì‹——£‚ğ‹‚ß‚é
+	//çƒã®è·é›¢ã‚’æ±‚ã‚ã‚‹
 	d = InnerProduct(n, sphere.center);
 	length = d - plane.distance;
-	//“–‚½‚Á‚½‚ç
+	//å½“ãŸã£ãŸã‚‰
 	if (abs(length) <= sphere.radius) {
 		return true;
 	}
 	else
 	{
 		return false;
+	}
+}
+
+//ç·šã¨å¹³é¢ã®è¡çªåˆ¤å®š
+bool IsCollisionS2P(const Segment& segment, Plane& plane) {
+	
+	Vector3 n;
+	n = Normalize(plane.normal);
+	//å‚ç›´åˆ¤å®šã®ãŸã‚ã«æ³•ç·šã¨ç·šã®å†…ç©ã‚’æ±‚ã‚ã‚‹
+	float dot = InnerProduct(n, segment.diff);
+	//å‚ç›´ï¼å¹³è¡Œã§ã‚ã‚‹ã®ã§è¡çªã—ã¦ã„ã‚‹ã¯ãšãŒãªã„
+	if (dot == 0) {
+		return false;
+	}
+	//ï½”ã‚’æ±‚ã‚ã‚‹
+	float t = (plane.distance - InnerProduct(segment.origin, n)) / dot;
+
+	//ï½”ã®å€¤ã¨ç·šã®ç¨®é¡ã«ã‚ˆã£ã¦è¡çªã—ã¦ã„ã‚‹ã‹ã‚’åˆ¤æ–­ã™ã‚‹
+	if (t <= 1 && t>=0) {
+		return true;
 	}
 }
 
@@ -154,7 +174,7 @@ Vector3 Perpendicular(const Vector3& vector) {
 	return { 0.0f,-vector.z,vector.y };
 }
 
-//•½–Ê‚Ì•`‰æ
+//å¹³é¢ã®æç”»
 void DrawPlane(const Plane& plane, const Matrix4x4& viewProjectionMatrix, const Matrix4x4& viewportMatrix, uint32_t color) {
 	Vector3 center = Scaler(plane.distance, plane.normal);
 	Vector3 perpendiculars[4];
